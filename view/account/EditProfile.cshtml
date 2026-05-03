@@ -1,0 +1,92 @@
+﻿@model ShreePerfume.Models.User
+
+<div class="container my-5 pt-5">
+    <div class="row">
+
+        <div class="mb-4">
+            <a asp-action="Dashboard" class="back-link text-decoration-none text-dark fw-bold">
+                <i class="bi bi-arrow-left me-2"></i> Back
+            </a>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 border-0 rounded-4">
+                <h4 class="fw-bold mb-4">Edit Personal Info</h4>
+                <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                    <div class="text-center mb-3">
+                        @* Image display logic *@
+                        <img src="~/images/profiles/@(Model.ProfilePhotoPath ?? "default-user.png")"
+                             class="rounded-circle shadow-sm" width="100" height="100"
+                             style="object-fit: cover; border: 2px solid #ddd;">
+
+                        @* Name must match IFormFile parameter in Controller *@
+                        <input type="file" name="ProfilePhoto" class="form-control mt-2 shadow-none border-0 bg-light">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Full Name</label>
+                        <input asp-for="FullName" class="form-control rounded-pill">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Phone Number</label>
+                        <input asp-for="PhoneNo" class="form-control rounded-pill">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Address</label>
+                        <textarea asp-for="Address" class="form-control rounded-4" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark rounded-pill px-5">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 border-0 rounded-4 mb-4">
+                <h5 class="fw-bold mb-3">Security</h5>
+                <form asp-action="ChangePassword" method="post">
+
+                    <div class="input-group mb-2">
+                        <input type="password" id="oldPass" name="OldPassword" placeholder="Current Password" class="form-control rounded-start-pill border-end-0" required>
+                        <span class="input-group-text bg-white border-start-0 rounded-end-pill" onclick="togglePass('oldPass', this)" style="cursor: pointer;">
+                            <i class="bi bi-eye-slash text-muted"></i>
+                        </span>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <input type="password" id="newPass" name="NewPassword" placeholder="New Password" class="form-control rounded-start-pill border-end-0" required>
+                        <span class="input-group-text bg-white border-start-0 rounded-end-pill" onclick="togglePass('newPass', this)" style="cursor: pointer;">
+                            <i class="bi bi-eye-slash text-muted"></i>
+                        </span>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" id="confirmPass" name="ConfirmPassword" placeholder="Confirm New Password" class="form-control rounded-start-pill border-end-0" required>
+                        <span class="input-group-text bg-white border-start-0 rounded-end-pill" onclick="togglePass('confirmPass', this)" style="cursor: pointer;">
+                            <i class="bi bi-eye-slash text-muted"></i>
+                        </span>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-dark rounded-pill w-100">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePass(inputId, buttonElement) {
+        const inputField = document.getElementById(inputId);
+        const icon = buttonElement.querySelector('i');
+
+        if (inputField.type === "password") {
+            inputField.type = "text";
+            icon.classList.replace('bi-eye-slash', 'bi-eye');
+        } else {
+            inputField.type = "password";
+            icon.classList.replace('bi-eye', 'bi-eye-slash');
+        }
+    }
+</script>
