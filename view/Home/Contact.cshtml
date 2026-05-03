@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Contact Us - Shree Perfume";
+}
+
+<style>
+    .contact-hero {
+        background: #1a1a1a;
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .contact-card {
+        border: none;
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+    .contact-icon {
+        font-size: 2rem;
+        color: #b8860b;
+        margin-bottom: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #b8860b;
+        box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.25);
+    }
+</style>
+
+<div class="contact-hero mb-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">CONTACT US</h1>
+        <p class="lead">We would love to hear from you</p>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row g-5">
+        <div class="col-lg-4">
+            <div class="card contact-card shadow-sm p-4 h-100 bg-light">
+                <h3 class="fw-bold mb-4">Get in Touch</h3>
+
+                <div class="d-flex mb-4">
+                    <div class="contact-icon me-3"><i class="bi bi-geo-alt"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Our Location</h6>
+                        <p class="text-muted mb-0">123 Fragrance Lane, Rajkot, Gujarat, India</p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4">
+                    <div class="contact-icon me-3"><i class="bi bi-envelope"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Email Us</h6>
+                        <p class="text-muted mb-0">support@shreeperfume.com</p>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="contact-icon me-3"><i class="bi bi-phone"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Call Us</h6>
+                        <p class="text-muted mb-0">+91 98765 43210</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card contact-card shadow p-4 p-md-5">
+                <h3 class="fw-bold mb-4">Send a Message</h3>
+                
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 mb-4" role="alert" style="border-left: 5px solid #155724 !important;">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @model ShreePerfume.Models.ContactForm
+                <form asp-action="Contact" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input asp-for="Name" class="form-control p-3 bg-light border-0" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control p-3 bg-light border-0" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="Subject" class="form-label"></label>
+                            <input asp-for="Subject" class="form-control p-3 bg-light border-0" />
+                            <span asp-validation-for="Subject" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="Message" class="form-label"></label>
+                            <textarea asp-for="Message" class="form-control p-3 bg-light border-0" rows="5"></textarea>
+                            <span asp-validation-for="Message" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-dark btn-lg px-5 rounded-pill w-100">
+                                SEND MESSAGE
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                @section Scripts {
+                    @{
+                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
