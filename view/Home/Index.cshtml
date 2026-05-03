@@ -1,0 +1,248 @@
+﻿@model IEnumerable<ShreePerfume.Models.Perfume>
+
+@{
+    ViewData["Title"] = "Home - Aroma by Shree";
+}
+
+<div class="container-fluid p-0">
+    <div class="position-relative text-center shadow-sm overflow-hidden"
+         style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/perfume-hero-bg.jpg');
+                background-size: cover;
+                background-position: center;
+                min-height: 70vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;">
+
+        <div class="text-white px-3 animate__animated animate__fadeIn">
+            <h1 class="display-2 fw-bold mb-3" style="font-family: 'Playfair Display', serif; letter-spacing: 2px;">AROMA BY SHREE</h1>
+            <p class="lead mb-4 fs-4 fw-light">Discover the Art of Fine Fragrance</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="/Product/Shop" class="btn btn-warning btn-lg px-5 py-3 rounded-pill fw-bold text-dark shadow">SHOP COLLECTION</a>
+                <a asp-controller="Home" asp-action="About" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fw-bold">OUR STORY</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5 py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold" style="font-family: 'Playfair Display', serif;">Curated For You</h2>
+        <div class="mx-auto bg-warning" style="height: 3px; width: 60px;"></div>
+    </div>
+    <div class="row g-4">
+
+        <div class="col-md-6 animate__animated animate__fadeInLeft">
+            <div class="position-relative overflow-hidden rounded-4 shadow-sm category-card" style="height: 450px;">
+                <img src="/images/him.jpg" class="w-100 h-100 object-fit-cover transition-img" style="position: absolute; top:0; left:0; z-index: 1;">
+
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center" style="z-index: 2;">
+                    <div class="text-center px-3">
+                        <h2 class="text-white fw-bold display-5 mb-3">FOR HIM</h2>
+                        <a asp-controller="Product" asp-action="Shop" asp-route-gender="Men" class="btn btn-light rounded-pill px-4 fw-bold shadow-sm">BROWSE MENS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 animate__animated animate__fadeInRight">
+            <div class="position-relative overflow-hidden rounded-4 shadow-sm category-card" style="height: 450px;">
+                <img src="/images/her1.jpg" class="w-100 h-100 object-fit-cover transition-img" style="position: absolute; top:0; left:0; z-index: 1;">
+
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center" style="z-index: 2;">
+                    <div class="text-center px-3">
+                        <h2 class="text-white fw-bold display-5 mb-3">FOR HER</h2>
+                        <a asp-controller="Product" asp-action="Shop" asp-route-gender="Women" class="btn btn-light rounded-pill px-4 fw-bold shadow-sm">BROWSE WOMENS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="p-4">
+                    <i class="bi bi-droplet-half text-warning display-4 mb-3"></i>
+                    <h5 class="fw-bold">Pure Essence</h5>
+                    <p class="text-muted small">We use 100% natural essential oils for a richer, more authentic scent profile.</p>
+                </div>
+            </div>
+            <div class="col-md-4 border-start border-end border-md-none">
+                <div class="p-4">
+                    <i class="bi bi-clock-history text-warning display-4 mb-3"></i>
+                    <h5 class="fw-bold">12+ Hour Wear</h5>
+                    <p class="text-muted small">Our high-concentration Parfum ensures your signature scent stays with you.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4">
+                    <i class="bi bi-gift text-warning display-4 mb-3"></i>
+                    <h5 class="fw-bold">Luxury Gifting</h5>
+                    <p class="text-muted small">Every order arrives in our signature premium velvet-lined box packaging.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container my-5 py-5">
+    <div class="row align-items-center">
+        <div class="col-md-5 animate__animated animate__fadeInLeft">
+            <h2 class="display-5 fw-bold mb-4" style="font-family: 'Playfair Display', serif;">The Art of Extraction</h2>
+            <p class="lead text-muted">From the heart of Rajkot, we bring you fragrances crafted with ancient techniques and modern precision.</p>
+            <ul class="list-unstyled">
+                <li class="mb-3"><i class="bi bi-check2-circle text-warning me-2"></i> Hand-picked seasonal ingredients</li>
+                <li class="mb-3"><i class="bi bi-check2-circle text-warning me-2"></i> 6-month aging process for depth</li>
+                <li class="mb-3"><i class="bi bi-check2-circle text-warning me-2"></i> Small-batch production</li>
+            </ul>
+        </div>
+        <div class="col-md-7 animate__animated animate__fadeInRight">
+            <div class="row g-3">
+                <div class="col-6">
+                    <img src="/images/Ingredients.jpg" class="img-fluid rounded-4 shadow-sm" alt="Ingredients">
+                </div>
+                <div class="col-6 mt-5">
+                    <img src="/images/Bottling1.jpg" class="img-fluid rounded-4 shadow-sm" alt="Bottling">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5" style="font-family: 'Playfair Display', serif;">Wear the Moment</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 bg-transparent h-100">
+                    <div class="rounded-circle bg-white shadow-sm mx-auto d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+					 <img src="/images/DailyOffice.jpg" class="w-100 h-100 object-fit-cover" alt="Office">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Daily Office</h5>
+                       
+                        <p class="small text-muted">Subtle, clean, and professional scents.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-transparent h-100">
+                    <div class="rounded-circle bg-white shadow-sm mx-auto d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+						 <img src="/images/SpecialEvents.jpg" class="w-100 h-100 object-fit-cover" alt="Office" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Professional Edge</h5>
+                  
+                        <p class="small text-muted">Clean, crisp, and commanding respect.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-transparent h-100">
+                    <div class="rounded-circle bg-white shadow-sm mx-auto d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+					 <img src="/images/SpecialEvents1.jpg" class="w-100 h-100 object-fit-cover" alt="Office">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Special Events</h5>
+                      
+                        <p class="small text-muted">Bold, long-lasting luxury fragrances.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div id="collection" class="container my-5 py-5">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+        <div>
+            <h2 class="fw-bold" style="font-family: 'Playfair Display', serif;">Best Sellers</h2>
+            <p class="text-muted mb-0">Our most loved fragrances this season.</p>
+        </div>
+        <a asp-controller="Product" asp-action="Shop" class="btn btn-outline-dark rounded-pill px-4">View All</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        @foreach (var item in Model.Take(4)) // Only show top 4 on Home Page
+        {
+            <div class="col animate__animated animate__zoomIn">
+                <div class="card h-100 border-0 shadow-sm text-center p-3 product-card">
+                    <div class="position-relative overflow-hidden rounded-3 mb-3" style="height: 250px;">
+                        <img src="@item.ImageUrl" class="h-100 w-auto mx-auto object-fit-contain transition-img">
+                    </div>
+                    <div class="card-body p-0">
+                        <span class="text-muted small text-uppercase">@item.Gender</span>
+                        <h5 class="card-title fw-bold my-2">@item.Name</h5>
+                        <p class="h5 text-dark fw-bold mb-3">₹@item.Price.ToString("N0")</p>
+
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"
+                           class="btn btn-dark w-100 rounded-pill py-2 text-uppercase fw-bold small shadow-sm">
+                            Explore Scent
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> *@
+
+@* <div class="container my-5 py-5 text-center rounded-5 shadow-lg bg-dark text-white p-5">
+    <h2 class="display-5 fw-bold mb-3" style="font-family: 'Playfair Display', serif;">Join the Elite</h2>
+    <p class="text-white-50 mb-4">Subscribe for exclusive early access to new collections and luxury offers.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control form-control-lg rounded-start-pill border-0" placeholder="Enter your email address">
+                <button class="btn btn-warning px-4 rounded-end-pill fw-bold" type="button">JOIN</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<style>
+    .transition-img {
+        transition: transform 0.6s ease;
+    }
+
+    .category-card:hover .transition-img {
+        transform: scale(1.1);
+    }
+
+    .product-card {
+        transition: all 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+        }
+
+    .btn-warning {
+        background-color: #d4af37;
+        border: none;
+        color: white;
+    }
+
+        .btn-warning:hover {
+            background-color: #b8962f;
+            color: white;
+        }
+
+    .transition-circle {
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .transition-circle:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3) !important;
+        border-color: #000 !important;
+    }
+
+</style>
