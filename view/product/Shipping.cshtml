@@ -1,0 +1,34 @@
+﻿@* shipping.cshtml file *@
+
+<div class="container my-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card border-0 shadow-lg p-5 rounded-4">
+                <h2 class="fw-bold mb-4">Delivery Details</h2>
+
+                <form asp-action="PlaceOrder" asp-controller="Product" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Full Name</label>
+                            <input type="text" name="FullName" class="form-control rounded-pill" placeholder="Enter name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Phone Number</label>
+                            <input type="tel" name="PhoneNumber" class="form-control rounded-pill" placeholder="+91 00000 00000" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Shipping Address</label>
+                            <textarea name="Address" class="form-control rounded-3" rows="3" placeholder="Apartment, Street, Area in Rajkot" required></textarea>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-dark w-100 rounded-pill py-3 fw-bold">
+                                PLACE ORDER (CASH ON DELIVERY)
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
