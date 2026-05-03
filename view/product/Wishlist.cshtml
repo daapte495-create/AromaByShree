@@ -1,0 +1,51 @@
+﻿@* wishlist.cshtml file *@
+
+@model List<ShreePerfume.Models.Perfume>
+
+<div class="container my-5 py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="display-5 fw-bold" style="font-family: 'Playfair Display', serif;">My Wishlist</h2>
+        <a asp-action="Shop" class="btn btn-outline-dark rounded-pill px-4 fw-bold shadow-sm">
+            <i class="bi bi-arrow-left me-2"></i> CONTINUE SHOPPING
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5 border rounded-4 bg-light">
+            <i class="bi bi-heart text-muted mb-3" style="font-size: 3rem;"></i>
+            <p class="text-muted fs-5">You haven't saved any scents yet.</p>
+            <a asp-action="Shop" class="btn btn-dark rounded-pill px-5 mt-3">Explore Collections</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="@item.ImageUrl" class="card-img-top p-3" alt="@item.Name" style="height: 250px; object-fit: contain;">
+
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="fw-bold">@item.Name</h6>
+                                <p class="text-warning fw-bold mb-3">₹@item.Price.ToString("N0")</p>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark btn-sm rounded-pill py-2">
+                                    View Scent
+                                </a>
+
+                                <a asp-action="RemoveFromWishlist" asp-route-id="@item.Id" class="text-danger small text-decoration-none mt-2">
+                                    <i class="bi bi-x-circle me-1"></i> Remove
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

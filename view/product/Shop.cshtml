@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShreePerfume.Models.Perfume>
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Explore Our Scents</h1>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            @* All Button *@
+            <a asp-action="Shop" asp-route-gender=""
+               class="btn @(ViewBag.SelectedGender == null || ViewBag.SelectedGender == "" ? "btn-dark" : "btn-outline-dark") rounded-pill px-4">
+                All
+            </a>
+
+            @* For Him Button *@
+            <a asp-action="Shop" asp-route-gender="Men"
+               class="btn @(ViewBag.SelectedGender == "Men" ? "btn-dark" : "btn-outline-dark") rounded-pill px-4">
+                For Him
+            </a>
+
+            @* For Her Button *@
+            <a asp-action="Shop" asp-route-gender="Women"
+               class="btn @(ViewBag.SelectedGender == "Women" ? "btn-dark" : "btn-outline-dark") rounded-pill px-4">
+                For Her
+            </a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+        @foreach (var item in Model)
+        {
+            <div class="card h-100 border-0 shadow-sm text-center p-3 product-card">
+                <div class="img-container mb-3" style="height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="@item.ImageUrl" class="img-fluid" style="max-height: 100%; object-fit: contain;">
+                </div>
+                <div class="card-body px-0">
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                        <h5 class="fw-bold mb-1">@item.Name</h5>
+                    </a>
+
+                    <p class="text-muted small mb-2">@item.Description</p>
+                    <p class="h5 text-dark fw-bold mb-3">₹@item.Price.ToString("N0")</p>
+                 <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark rounded-pill w-100 py-2 mt-3">
+						Discover More
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .product-card {
+        transition: transform 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+</style>
