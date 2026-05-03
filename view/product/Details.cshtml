@@ -1,0 +1,182 @@
+﻿@* details.cshtml file *@
+
+@model ShreePerfume.Models.Perfume
+
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="container my-5 py-5">
+    <div class="mb-4">
+        <a asp-action="Shop" class="back-link text-decoration-none text-dark fw-bold">
+            <i class="bi bi-arrow-left me-2"></i> Back to Shop
+        </a>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-6">
+            <div class="p-4 bg-white shadow-sm rounded-4 text-center border">
+                <img src="@Model.ImageUrl" class="img-fluid rounded-3" style="max-height: 500px;" alt="@Model.Name">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <span class="text-muted text-uppercase small tracking-wider">Exclusive @Model.Gender Scent</span>
+            <h1 class="display-3 fw-bold mt-2">@Model.Name</h1>
+            <h3 class="fw-light mb-4 text-dark">₹@Model.Price.ToString("N0")</h3>
+
+            <p class="text-muted fs-5 mb-5">@Model.Description</p>
+
+            <form method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold small text-uppercase">Quantity</label>
+                    <div class="input-group" style="width: 140px;">
+                        <button type="button" class="btn btn-outline-secondary rounded-start-pill" onclick="decrement()">-</button>
+                        <input type="number" id="qtyInput" name="quantity" class="form-control text-center fw-bold" value="1" min="1" max="10">
+                        <button type="button" class="btn btn-outline-secondary rounded-end-pill" onclick="increment()">+</button>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex mb-3">
+                    <button type="submit" asp-action="AddToCart" class="btn btn-dark btn-lg px-5 rounded-pill fw-bold flex-grow-1 shadow">
+                        ADD TO CART
+                    </button>
+
+                    <button type="submit" asp-action="BuyNow" class="btn btn-warning btn-lg px-5 rounded-pill fw-bold flex-grow-1 text-white shadow">
+                        BUY NOW
+                    </button>
+                </div>
+
+                <button type="submit" asp-action="AddToWishlist" class="btn btn-outline-danger w-100 mt-2 rounded-pill fw-bold">
+                    <i class="bi bi-heart-fill me-2"></i> Save to Wishlist
+                </button>
+            </form>
+
+            <div class="mt-5">
+                <h4 class="fw-bold">Write a Review</h4>
+                <form asp-action="PostReview" method="post" class="mt-3">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <div class="mb-3">
+                        <label class="form-label">Rating (1-5 Stars)</label>
+                        <select name="rating" class="form-select rounded-pill">
+                            <option value="5">⭐⭐⭐⭐⭐ (Excellent)</option>
+                            <option value="4">⭐⭐⭐⭐ (Very Good)</option>
+                            <option value="3">⭐⭐⭐ (Average)</option>
+                            <option value="2">⭐⭐ (Poor)</option>
+                            <option value="1">⭐ (Terrible)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="comment" class="form-control rounded-4" rows="3" placeholder="Share your experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark rounded-pill px-4">Submit Review</button>
+                </form>
+            </div>
+
+            <hr class="my-5">
+
+            <div class="mb-5">
+                
+                <h4 class="fw-bold">Customer Reviews</h4>
+
+                @if (ViewBag.Reviews != null && ((List<Review>)ViewBag.Reviews).Any())
+                {
+                    foreach (var review in (List<Review>)ViewBag.Reviews)
+                    {
+                        <div class="card mb-2 shadow-sm border-0 bg-light">
+                            <div class="card-body">
+                                <h6 class="fw-bold mb-0">@review.UserName</h6>
+                                <small class="text-warning">
+                                    @for (int i = 0; i < review.Rating; i++)
+                                    {
+                                        <span>★</span>
+                                    }
+                                </small>
+                                <p class="mb-0 mt-1">@review.Comment</p>
+                                <small class="text-muted" style="font-size: 0.8rem;">@review.Date.ToString("dd MMM yyyy")</small>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted italic">No reviews yet. Be the first to review!</p>
+                }
+           
+            </div>
+
+            <div class="d-flex justify-content-between border-top pt-4 text-muted small mt-4">
+                <span><i class="bi bi-truck me-1 text-dark"></i> Free Shipping</span>
+                <span><i class="bi bi-arrow-left-right me-1 text-dark"></i> 7-Day Returns</span>
+                <span><i class="bi bi-patch-check me-1 text-dark"></i> 100% Original</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function increment() {
+        let input = document.getElementById('qtyInput');
+        if(parseInt(input.value) < 10) input.value = parseInt(input.value) + 1;
+    }
+    function decrement() {
+        let input = document.getElementById('qtyInput');
+        if(parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+    }
+</script>
+
+<style>
+    .btn-dark:hover, .btn-warning:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+        .back-link:hover {
+            color: #ffc107 !important;
+            transform: translateX(-5px);
+        }
+
+        .back-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover i {
+            transform: scale(1.2);
+        }
+
+        .back-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffc107;
+            transition: width 0.3s ease;
+        }
+
+        .back-link:hover::after {
+            width: 100%;
+        }
+</style>
