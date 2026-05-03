@@ -1,0 +1,9 @@
+﻿<div class="container mt-5">
+    <h2>Verify Your Email</h2>
+    <p class="text-danger">Your Code is: @TempData["Code"] (Demo purposes)</p>
+    <form asp-action="VerifyEmail" method="post">
+        <input type="hidden" name="email" value="@ViewBag.Email" />
+        <input type="text" name="userCode" class="form-control mb-3" placeholder="Enter 6-digit code" />
+        <button type="submit" class="btn btn-dark">Verify Now</button>
+    </form>
+</div>
