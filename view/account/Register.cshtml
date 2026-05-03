@@ -1,0 +1,110 @@
+﻿@* register.cshtml file *@
+
+@model ShreePerfume.Models.RegisterViewModel
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h3>Create Your Account</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Register" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FullName" class="form-label font-weight-bold">Full Name</label>
+                                <input asp-for="FullName" class="form-control" placeholder="John Doe" />
+                                <span asp-validation-for="FullName" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label font-weight-bold">Email</label>
+                                <input asp-for="Email" class="form-control" placeholder="john@example.com" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label font-weight-bold">Address</label>
+                            <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNo" class="form-label font-weight-bold">Phone Number</label>
+                                <input asp-for="PhoneNo" class="form-control" />
+                                <span asp-validation-for="PhoneNo" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Gender" class="form-label font-weight-bold">Gender</label>
+                                <select asp-for="Gender" class="form-select">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Password</label>
+                            <div class="input-group">
+                                <input asp-for="Password" id="pass1" class="form-control" type="password" />
+                                <span class="input-group-text" id="togglePass1" style="cursor: pointer;">
+                                    <i class="bi bi-eye-slash" id="eye1"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Confirm Password</label>
+                            <div class="input-group">
+                                <input asp-for="ConfirmPassword" id="pass2" class="form-control" type="password" />
+                                <span class="input-group-text" id="togglePass2" style="cursor: pointer;">
+                                    <i class="bi bi-eye-slash" id="eye2"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ProfilePhoto" class="form-label font-weight-bold">Profile Photo (Optional)</label>
+                            <input asp-for="ProfilePhoto" type="file" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 py-2 fw-bold rounded-pill">REGISTER NOW</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Pehle Password ke liye
+        const togglePass1 = document.querySelector('#togglePass1');
+        const pass1 = document.querySelector('#pass1');
+
+        togglePass1.addEventListener('click', function () {
+            const type = pass1.getAttribute('type') === 'password' ? 'text' : 'password';
+            pass1.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye');
+            this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+
+        // Confirm Password ke liye
+        const togglePass2 = document.querySelector('#togglePass2');
+        const pass2 = document.querySelector('#pass2');
+
+        togglePass2.addEventListener('click', function () {
+            const type = pass2.getAttribute('type') === 'password' ? 'text' : 'password';
+            pass2.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye');
+            this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+    </script>
+}
