@@ -1,0 +1,80 @@
+﻿@* @model ShreePerfume.Models.User
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <div class="text-center mb-4">
+                    <div class="bg-primary bg-opacity-10 d-inline-block p-4 rounded-circle mb-3">
+                        <i class="bi bi-person-badge fs-1 text-primary"></i>
+                    </div>
+                    <h3 class="fw-bold">Admin Profile</h3>
+                    <p class="text-muted small">Update your account credentials</p>
+                </div>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success border-0 rounded-pill text-center small mb-4">
+                        @TempData["Success"]
+                    </div>
+                }
+
+                <form asp-action="UpdateProfile" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">FULL NAME</label>
+                        <input type="text" name="fullName" value="@Model.FullName" class="form-control rounded-pill border-0 bg-light px-3 py-2" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">EMAIL ADDRESS</label>
+                        <input type="email" name="email" value="@Model.Email" class="form-control rounded-pill border-0 bg-light px-3 py-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold small text-muted">NEW PASSWORD (LEAVE BLANK TO KEEP CURRENT)</label>
+                        <input type="password" name="newPassword" class="form-control rounded-pill border-0 bg-light px-3 py-2" placeholder="••••••••">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm fw-bold">
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+@model ShreePerfume.Models.User
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+                <h3 class="fw-bold text-center mb-4">Admin Settings</h3>
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Success"]</div>
+                }
+                <form asp-action="UpdateProfile" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Full Name</label>
+                        <input type="text" name="fullName" value="@Model.FullName" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" name="email" value="@Model.Email" class="form-control">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">New Password</label>
+                        <input type="password" name="newPassword" class="form-control" placeholder="Leave blank to keep current">
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill">Save Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
