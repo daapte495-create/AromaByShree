@@ -1,0 +1,172 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Dashboard Overview</h2>
+        <span class="badge bg-success-soft text-success p-2 rounded-3 border border-success">
+            <i class="bi bi-circle-fill me-2 small"></i>System Live
+        </span>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a href="@Url.Action("ManageOrders", "Admin")" class="text-decoration-none">
+                <div class="card shadow-sm border-0 rounded-4 h-100 p-3 border-start border-primary border-4 transition-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-muted mb-1 fw-bold small">TOTAL SALES</p>
+                            <h3 class="fw-bold mb-0">₹@ViewBag.TotalSales</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-currency-rupee fs-3 text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a href="@Url.Action("ManageOrders", "Admin")" class="text-decoration-none">
+                <div class="card shadow-sm border-0 rounded-4 h-100 p-3 border-start border-success border-4 transition-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-muted mb-1 fw-bold small">ORDERS</p>
+                            <h3 class="fw-bold mb-0">@ViewBag.TotalOrders</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-cart-check fs-3 text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a href="@Url.Action("ManageProducts", "Admin")" class="text-decoration-none">
+                <div class="card shadow-sm border-0 rounded-4 h-100 p-3 border-start border-info border-4 transition-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-muted mb-1 fw-bold small">PERFUMES</p>
+                            <h3 class="fw-bold mb-0">@ViewBag.TotalProducts</h3>
+                        </div>
+                        <div class="bg-info bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-droplet fs-3 text-info"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a href="@Url.Action("ViewUsers", "Admin")" class="text-decoration-none">
+                <div class="card shadow-sm border-0 rounded-4 h-100 p-3 border-start border-warning border-4 transition-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-muted mb-1 fw-bold small">CUSTOMERS</p>
+                            <h3 class="fw-bold mb-0">@ViewBag.TotalUsers</h3>
+                        </div>
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-people fs-3 text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4 p-0 overflow-hidden">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">Recent Activity</h5>
+                    <a href="@Url.Action("ManageOrders", "Admin")" class="btn btn-sm btn-light rounded-pill px-3">View All</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0 border-top">
+                        <thead class="bg-light">
+                            <tr class="small text-muted">
+                                <th class="ps-4">ORDER ID</th>
+                                <th>STATUS</th>
+                                <th class="pe-4 text-end">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ps-4 fw-bold">#1024</td>
+                                <td><span class="badge rounded-pill bg-warning text-dark">Pending</span></td>
+                                <td class="pe-4 text-end fw-bold">₹4,500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
+                <h5 class="fw-bold mb-3">Quick Actions</h5>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("AddProduct", "Admin")" class="btn btn-primary rounded-pill py-2 shadow-sm">
+                        <i class="bi bi-plus-lg me-2"></i>New Perfume
+                    </a>
+                    <a href="@Url.Action("ManageProducts", "Admin")" class="btn btn-outline-dark rounded-pill py-2">
+                        <i class="bi bi-gear me-2"></i>Inventory Settings
+                    </a>
+                </div>
+            </div>
+
+            @* <div class="card shadow-sm border-0 rounded-4 p-4 bg-light border-1">
+                <h6 class="fw-bold text-primary"><i class="bi bi-info-circle me-2"></i>System Info</h6>
+                <p class="small text-muted mb-0">Database connected. Images are served from <code>wwwroot/images</code>.</p>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-xl-3">
+        <a href="@Url.Action("ManageInquiries", "Admin")" class="text-decoration-none">
+            <div class="card shadow-sm border-0 rounded-4 p-3 border-start border-danger border-4 transition-card h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 fw-bold small text-uppercase">New Inquiries</p>
+                        <h3 class="fw-bold mb-0">@ViewBag.NewInquiries</h3>
+                    </div>
+                    <div class="bg-danger bg-opacity-10 p-3 rounded-3">
+                        <i class="bi bi-envelope-exclamation fs-3 text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+        <a href="@Url.Action("ManageReviews", "Admin")" class="text-decoration-none">
+            <div class="card shadow-sm border-0 rounded-4 p-3 border-start border-dark border-4 transition-card h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 fw-bold small text-uppercase">Total Reviews</p>
+                        <h3 class="fw-bold mb-0">@ViewBag.TotalReviews</h3>
+                    </div>
+                    <div class="bg-dark bg-opacity-10 p-3 rounded-3">
+                        <i class="bi bi-star-half fs-3 text-dark"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<style>
+    .transition-card {
+        transition: transform 0.2s;
+        cursor: pointer;
+    }
+
+        .transition-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .bg-success-soft {
+        background-color: #d1e7dd;
+    }
+</style>
