@@ -1,0 +1,132 @@
+﻿@model IEnumerable<ShreePerfume.Models.ContactForm>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <a asp-action="Dashboard" class="back-link text-decoration-none text-dark fw-bold">
+            <i class="bi bi-arrow-left me-2"></i> Back
+        </a>
+    </div>
+
+    <h2 class="fw-bold mb-4">Customer Inquiries</h2>
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4">Name</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th> @* Naya Column *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <strong>@item.Name</strong><br>
+                                <small class="text-muted">@item.Email</small>
+                            </td>
+                            <td>@item.Subject</td>
+                            <td>
+                                <div style="min-width: 250px; white-space: normal; word-wrap: break-word;">
+                                    @item.Message
+                                </div>
+                            </td>
+                            <td>@item.SubmittedAt.ToString("dd MMM yyyy")</td>
+                            <td>
+                                @if (item.IsRead)
+                                {
+                                    <span class="badge rounded-pill bg-light text-dark border">Replied</span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-danger">New</span>
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill"
+                                        data-bs-toggle="modal" data-bs-target="#replyModal-@item.Id">
+                                    <i class="bi bi-reply-fill"></i> Reply
+                                </button>
+
+                                <div class="modal fade" id="replyModal-@item.Id" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content border-0 rounded-4 shadow">
+                                            <div class="modal-header border-0">
+                                                <h5 class="modal-title fw-bold">Reply to @item.Name</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <form asp-action="ReplyToInquiry" method="post">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <div class="mb-3 bg-light p-3 rounded-3">
+                                                        <p class="small text-muted mb-1">Customer Message:</p>
+                                                        <p class="mb-0">@item.Message</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">Your Response</label>
+                                                        <textarea name="replyText" class="form-control rounded-3" rows="4"
+                                                              placeholder="Type your answer here..." required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="button" class="btn btn-light rounded-pill" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary rounded-pill px-4">Send Reply</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+        .back-link:hover {
+            color: #ffc107 !important;
+            transform: translateX(-5px);
+        }
+
+        .back-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover i {
+            transform: scale(1.2);
+        }
+
+        .back-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffc107;
+            transition: width 0.3s ease;
+        }
+
+        .back-link:hover::after {
+            width: 100%;
+        }
+</style>
